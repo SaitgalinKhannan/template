@@ -1,12 +1,15 @@
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-suspend fun main() {
-    CoroutineScope(Dispatchers.IO).launch {
-        delay(1000L)
-        println("World!")
+suspend fun main() = coroutineScope { // this: CoroutineScope
+    launch {
+        delay(2000L)
+        println("World 2")
     }
-    println("Hello,")
+    launch {
+        delay(1000L)
+        println("World 1")
+    }
+    println("Hello")
 }
